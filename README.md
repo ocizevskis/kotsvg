@@ -39,6 +39,28 @@ line {
 
 any invalid attributes will be labeled as such by the IDE.
 
+## Examples
+
+### Creating a simple group of elements
+
+Here we create a simple SVG group with some elements in it, namely a sequence of circles surrounded by a box.  Child elements can be added to any element via the `add()` method:
+
+```
+val pad = 5
+val svg = SVG(480 + 2*pad, 80 + 2*pad)
+val g = Group() {id="boxArray"}
+
+(0..4).forEach(
+  {g.add(
+      Rect(100*it + pad, pad, 80, 80) {fill = "wheat"; stroke = "black"},
+      Circle(40 + 100*it + pad, 40 + pad, 35) { fill = "royalblue"; stroke = "black" }
+  )}
+)
+
+svg.add(g)
+svg.save("exampleGroup.svg")
+```
+
 ## Currently Implemented
 
 **Shape Elements:**
