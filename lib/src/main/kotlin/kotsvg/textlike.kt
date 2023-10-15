@@ -58,10 +58,10 @@ abstract class TransformableTextLike<T: TransformableTextLike<T>>(x:String,y:Str
         this.add(Plaintext(text))
     }
 
-    inline operator fun <reified R : T> invoke(block: R.() -> Unit = {}): R {
-            val instance = this as R
-            instance.block()
-            return instance
+    operator fun invoke(block: TransformableTextLike<T>.() -> Unit = {}): T {
+        this.block()
+        @Suppress("UNCHECKED_CAST")
+        return this as T
         }
 
 }
@@ -97,10 +97,10 @@ abstract class TextLike<T: TextLike<T>>(text: String): SVGElement(){
     val text: String = text
     init {this.add(Plaintext(text))}
 
-    inline operator fun <reified R : T> invoke(block: R.() -> Unit = {}): R {
-        val instance = this as R
-        instance.block()
-        return instance
+    operator fun invoke(block: TextLike<T>.() -> Unit = {}):T {
+        this.block()
+        @Suppress("UNCHECKED_CAST")
+        return this as T
     }
 }
 
