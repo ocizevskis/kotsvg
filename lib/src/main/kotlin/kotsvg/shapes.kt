@@ -28,13 +28,12 @@ abstract class TransformableShape<T: TransformableShape<T>>: ShapeElement, Trans
     override var shape_rendering: String? by attributes
 
 
-    inline operator fun <reified R : T> invoke(block: R.() -> Unit = {}): R {
-        val instance = this as R
-        instance.block()
-        return instance
+    operator fun invoke(block: TransformableShape<T>.() -> Unit = {}): T {
+        this.block()
+        @Suppress("UNCHECKED_CAST")
+        return this as T
     }
 }
-
 class Line : TransformableShape<Line> {
     override val name = "line"
 
@@ -60,16 +59,15 @@ class Line : TransformableShape<Line> {
         this.geometry_params["y2"] = y2
     }
 }
-
 class Circle : TransformableShape<Circle> {
     override val name = "circle"
 
-    constructor(cx: String, cy: String, r: String, block: Circle.() -> Unit = {}) : super() {
+    constructor(cx: String, cy: String, r: String, block: TransformableShape<Circle>.() -> Unit = {}) : super() {
         setGeometryParams(cx, cy, r)
         this.block()
     }
 
-    constructor(cx: Number, cy: Number, r: Number, block: Circle.() -> Unit = {}) : super() {
+    constructor(cx: Number, cy: Number, r: Number, block: TransformableShape<Circle>.() -> Unit = {}) : super() {
         setGeometryParams(
             cx.toString(),
             cy.toString(),
@@ -84,7 +82,6 @@ class Circle : TransformableShape<Circle> {
         this.geometry_params["r"] = r
     }
 }
-
 class Ellipse : TransformableShape<Ellipse> {
     override val name = "ellipse"
 
@@ -113,10 +110,10 @@ class Ellipse : TransformableShape<Ellipse> {
 class Polyline : TransformableShape<Polyline> {
     override val name = "polyline"
 
-    constructor(points: List<Pair<String, String>>, block: Polyline.() -> Unit = {}) : super() {
-        setGeometryParams(points)
-        this.block()
-    }
+    // constructor(points: List<Pair<String, String>>, block: Polyline.() -> Unit = {}) : super() {
+    //     setGeometryParams(points)
+    //     this.block()
+    // }
 
     constructor(points: List<Pair<Number, Number>>, block: Polyline.() -> Unit = {}) : super() {
         setGeometryParams(
@@ -130,14 +127,13 @@ class Polyline : TransformableShape<Polyline> {
         this.geometry_params["points"] = pointsString
     }
 }
-
 open class Polygon : TransformableShape<Polygon> {
     override val name = "polygon"
 
-    constructor(points: List<Pair<String, String>>, block: Polygon.() -> Unit = {}) : super() {
-        setGeometryParams(points)
-        this.block()
-    }
+    // constructor(points: List<Pair<String, String>>, block: Polygon.() -> Unit = {}) : super() {
+    //     setGeometryParams(points)
+    //     this.block()
+    // }
     
     constructor(points: List<Pair<Number, Number>>, block: Polygon.() -> Unit = {}) : super() {
         setGeometryParams(
@@ -151,8 +147,6 @@ open class Polygon : TransformableShape<Polygon> {
         this.geometry_params["points"] = pointsString
     }
 }
-
-
 class Rect: TransformableShape<Rect> {
     override val name = "rect"
 
@@ -205,7 +199,6 @@ class Rect: TransformableShape<Rect> {
         if (ry != null) this.geometry_params["ry"] = ry
     }
 }
-
 class Path: TransformableShape<Path> {
     override val name = "path"
     constructor(d: String, block: Path.() -> Unit = {}): super() {

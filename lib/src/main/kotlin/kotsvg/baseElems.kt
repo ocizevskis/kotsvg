@@ -3,44 +3,52 @@ package kotsvg
 abstract class Transformable<T: Transformable<T>>(): SVGElement(){
     val transforms: MutableMap<String,String> = mutableMapOf()
     
-    inline fun <reified R : T> translate(x: String, y: String): R {
+    fun translate(x: String, y: String): T {
         this.transforms["translate"] = "$x, $y"
-        return this as R
+        @Suppress("UNCHECKED_CAST")
+        return this as T
     }
     
-    inline fun <reified R : T> translate(x: String): R {
+    fun translate(x: String): T {
         this.transforms["translate"] = x
-        return this as R
+        @Suppress("UNCHECKED_CAST")
+        return this as T
     }
     
-    inline fun <reified R : T> scale(x: String, y: String): R {
+    fun scale(x: String, y: String): T {
         this.transforms["scale"] = "$x, $y"
-        return this as R
+        @Suppress("UNCHECKED_CAST")
+        return this as T
     }
     
-    inline fun <reified R : T> scale(x: String): R {
+    fun scale(x: String): T {
         this.transforms["scale"] = x
-        return this as R
+        @Suppress("UNCHECKED_CAST")
+        return this as T
     }
     
-    inline fun <reified R : T> rotate(angle: String, x: String, y: String): R {
+    fun rotate(angle: String, x: String, y: String): T {
         this.transforms["rotate"] = "$angle, $x, $y"
-        return this as R
+        @Suppress("UNCHECKED_CAST")
+        return this as T
     }
     
-    inline fun <reified R : T> rotate(angle: String): R {
+    fun rotate(angle: String): T {
         this.transforms["rotate"] = angle
-        return this as R
+        @Suppress("UNCHECKED_CAST")
+        return this as T
     }
     
-    inline fun <reified R : T> skewX(angle: String): R {
+    fun skewX(angle: String): T {
         this.transforms["skewX"] = angle
-        return this as R
+        @Suppress("UNCHECKED_CAST")
+        return this as T
     }
     
-    inline fun <reified R : T> skewY(angle: String): R {
+    fun skewY(angle: String): T {
         this.transforms["skewY"] = angle
-        return this as R
+        @Suppress("UNCHECKED_CAST")
+        return this as T
     }
     
 

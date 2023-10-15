@@ -9,10 +9,10 @@ abstract class TransformableContainer<T: TransformableContainer<T>>: ContainerEl
     override var pointer_events: String? by attributes
 
 
-    inline operator fun <reified R : T> invoke(block: R.() -> Unit = {}): R {
-        val instance = this as R
-        instance.block()
-        return instance
+    operator fun invoke(block: TransformableContainer<T>.() -> Unit = {}): T {
+        this.block()
+        @Suppress("UNCHECKED_CAST")
+        return this as T
     }
 
 }
