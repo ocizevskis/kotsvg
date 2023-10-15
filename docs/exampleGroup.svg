@@ -1,0 +1,14 @@
+<svg height="90" width="490" xmlns="http://www.w3.org/2000/svg">
+<g id="boxArray">
+<rect x="5" y="5" width="80" height="80" fill="wheat" stroke="black"/>
+<circle cx="45" cy="45" r="35" fill="royalblue" stroke="black"/>
+<rect x="105" y="5" width="80" height="80" fill="wheat" stroke="black"/>
+<circle cx="145" cy="45" r="35" fill="royalblue" stroke="black"/>
+<rect x="205" y="5" width="80" height="80" fill="wheat" stroke="black"/>
+<circle cx="245" cy="45" r="35" fill="royalblue" stroke="black"/>
+<rect x="305" y="5" width="80" height="80" fill="wheat" stroke="black"/>
+<circle cx="345" cy="45" r="35" fill="royalblue" stroke="black"/>
+<rect x="405" y="5" width="80" height="80" fill="wheat" stroke="black"/>
+<circle cx="445" cy="45" r="35" fill="royalblue" stroke="black"/>
+</g>
+</svg>
