@@ -61,7 +61,39 @@ svg.add(g)
 svg.save("exampleGroup.svg")
 ```
 
-## Currently Implemented
+This will create the following SVG image:
+
+![](docs/exampleGroup.svg)
+
+### Creating custom elements
+
+At times it is convenient to define our own custom svg elements. Let's do this for the example with a circle surrounded by a box. The easiest way to achieve this is to create a new class that inherits `Group`:
+
+```
+class BoxedCircle(x: Double, y: Double, size: Double): Group() {
+    val rect = Rect(x, y, size, size) { fill = "wheat"; stroke = "black" }
+    val circle = Circle(x + size/2, y + size/2, 0.8*size/2) { fill = "royalblue"; stroke = "black" }
+
+    init {
+        this.add(rect, circle)
+    }
+}
+```
+
+We can then create a sequence as before:
+
+```
+(0..4).forEach(
+    {g.add(
+        BoxedCircle((100*it + pad).toDouble(), pad.toDouble(), 80.0)
+    )}
+)
+```
+
+Resulting in the same exact image.
+
+
+## Currently Implemented Elements
 
 **Shape Elements:**
 - Basic Shapes: `<circle>`, `<ellipse>`, `<line>`, `<polygon>`, `<polyline>`, `<rect>`
