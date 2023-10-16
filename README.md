@@ -7,9 +7,6 @@ SVG Elements are structured in classes that contain their relevant methods and a
 
 Class constructors take geometry properties as arguments:
 ```
-import kotsvg.SVG
-import kotsvg.Rect
-
 val svg = SVG(width = 100, height = 50)
 val rectangle = Rect(x = 0, y = 10, width = 100, height = 40)
 ```
@@ -21,9 +18,6 @@ val rectangle = Rect(0,10,100,40).translate(3).scale(0.5).rotate(180)
 Any optional attributes can be passed as closures either when creating an instance of an element or after; this also applies to transformations:
 
 ```
-import kotsvg.Circle
-import kotsvg.Line
-
 val circle = Circle(cx = 10, cy = 10, r = 10) {
   fill = "blue"
   stroke = "black"
@@ -33,7 +27,6 @@ val circle = Circle(cx = 10, cy = 10, r = 10) {
 val line = Line(x1 = 0, y1 = 0, x2 = 50, y2 = 50)
 line {
   stroke = "green"
-
 }
 ```
 
