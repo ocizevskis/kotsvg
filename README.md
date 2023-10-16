@@ -67,7 +67,7 @@ This will create the following SVG image:
 
 ### Creating custom elements
 
-At times it is convenient to define our own custom svg elements. Let's do this for the example with a circle surrounded by a box. The easiest way to achieve this is to create a new class that inherits `Group`:
+At times it is convenient to define our own custom svg elements. The easiest way to achieve this is to create a new class that inherits `Group`:
 
 ```
 class BoxedCircle(x: Double, y: Double, size: Double): Group() {
@@ -90,7 +90,10 @@ We can then create a sequence as before:
 )
 ```
 
-Resulting in the same exact image.
+Resulting in the same end image.
+
+
+As we inherited from `Group()`, we have access to the same attributes for our class as `Group()` does. However, this means we cannot by default set e.g. a value for `fill`. For the previous example, this is fine, as having fill for the element would be ambiguous anyway. However, for an element like an arrow, it would make sense to be able to set the same values as for any other simple svg shape; this is when inheriting from shapes is more useful, however, this requires creating a private static method and calling that in the constructor (see `Arrow()` in custom.kt).
 
 
 ## Currently Implemented Elements
