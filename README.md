@@ -92,7 +92,7 @@ We can then create a sequence as before:
 
 Resulting in the same end image.
 
-However, as we inherited from `Group()`, we cannot by default set e.g. a value for `fill`. For the previous example, this is fine, as having `fill` for our element would be ambiguous. However, for an element like an arrow, it would make sense to be able to set the same attributes as for any other simple svg shape. Consequently, inheriting from shapes is more useful, though this requires creating a private static method and calling that in the constructor (see `Arrow()` in custom.kt).
+However, for a simple element like an arrow, it would make sense to be able to set the same attributes as for any other svg shape element. Consequently, inheriting from shapes is often more practical, though this requires creating a private static method and calling that in the constructor (see `Arrow()` in custom.kt).
 
 
 ## Currently Implemented Elements
