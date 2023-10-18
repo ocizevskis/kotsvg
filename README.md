@@ -85,7 +85,7 @@ We can then create a sequence as before:
 
 Resulting in the same end image.
 
-However, for a simple element like an arrow, it would make sense to be able to set the same attributes as for any other svg shape element. Consequently, inheriting from shapes is often more practical, though this requires creating a private static method and calling that in the constructor (see `Arrow()` in custom.kt).
+However, for a simple element like an arrow, it would make sense to be able to set the same attributes as for any other svg shape element. Consequently, inheriting from shapes is often more practical -- simply create a private static method that processes your args and call that in the super constructor (see `Arrow()` in custom.kt).
 
 
 ## Currently Implemented Elements
