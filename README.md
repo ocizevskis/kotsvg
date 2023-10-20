@@ -1,4 +1,4 @@
-# kotsvg (very WIP)
+# kotsvg (WIP)
 A straightforward and easy to use library for creating SVGs in Kotlin. Follows the SVG spec closely in terms of naming.
 
 ## Overview
@@ -30,7 +30,8 @@ line {
 }
 ```
 
-any invalid attributes will be labeled as such by the IDE.
+any invalid attributes will be labeled as such by the IDE. 
+Currently, all geometry properties use Number as type; is a CSS value like 10Em is needed, the Em type can be imported from kotsvg.types. Numeric attributes Still take String, but this will be changed.
 
 ## Examples
 
