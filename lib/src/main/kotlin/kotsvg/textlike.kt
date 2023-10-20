@@ -1,16 +1,15 @@
 package kotsvg
 
-internal class Plaintext(text: String = "foo"): SVGElement() {
+internal class Plaintext(text: String = "foo") : SVGElement() {
     override val name = "dummy"
     val text: String = text
 
     override fun toString(): String {
         return text
     }
-
 }
 
-abstract class TransformableTextLike<T: TransformableTextLike<T>>(x:String,y:String,text: String): TextContentElement, Transformable<T>(){
+abstract class TransformableTextLike<T : TransformableTextLike<T>>(x: String, y: String, text: String) : TextContentElement, Transformable<T>() {
     override var clip_path: String? by attributes
     override var clip_rule: String? by attributes
     override var color_interpolation: String? by attributes
@@ -48,7 +47,6 @@ abstract class TransformableTextLike<T: TransformableTextLike<T>>(x:String,y:Str
     override var font_style: String? by attributes
     override var font_variant: String? by attributes
     override var font_weight: String? by attributes
-    
 
     var text: String = text
 
@@ -62,20 +60,12 @@ abstract class TransformableTextLike<T: TransformableTextLike<T>>(x:String,y:Str
         this.block()
         @Suppress("UNCHECKED_CAST")
         return this as T
-        }
-
+    }
 }
-
-
 
 class Text : TransformableTextLike<Text> {
     override val name = "text"
     constructor(x: Number, y: Number, text: String, block: Text.() -> Unit = {}) : super(x.toString(), y.toString(), text) {
-        block()
-    }
-    
-    // Existing constructor
-    constructor(x: String, y: String, text: String, block: Text.() -> Unit = {}) : super(x, y, text) {
         block()
     }
 }
@@ -85,29 +75,26 @@ class Tspan : TransformableTextLike<Tspan> {
     constructor(x: Number, y: Number, text: String, block: Tspan.() -> Unit = {}) : super(x.toString(), y.toString(), text) {
         block()
     }
-    
-    // Existing constructor
-    constructor(x: String, y: String, text: String, block: Tspan.() -> Unit = {}) : super(x, y, text) {
-        block()
-    }
 }
 
-
-abstract class TextLike<T: TextLike<T>>(text: String): SVGElement(){
+abstract class TextLike<T : TextLike<T>>(text: String) : SVGElement() {
     val text: String = text
-    init {this.add(Plaintext(text))}
 
-    operator fun invoke(block: TextLike<T>.() -> Unit = {}):T {
+    init {
+        this.add(Plaintext(text))
+    }
+
+    operator fun invoke(block: TextLike<T>.() -> Unit = {}): T {
         this.block()
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
 }
 
-class Desc(text: String): TextLike<Desc>(text){
+class Desc(text: String) : TextLike<Desc>(text) {
     override val name = "desc"
 }
 
-class Title(text: String): TextLike<Title>(text){
+class Title(text: String) : TextLike<Title>(text) {
     override val name = "title"
 }

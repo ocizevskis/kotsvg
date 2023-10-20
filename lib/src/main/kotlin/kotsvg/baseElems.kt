@@ -1,61 +1,69 @@
 package kotsvg
 
-abstract class Transformable<T: Transformable<T>>(): SVGElement(){
-    val transforms: MutableMap<String,String> = mutableMapOf()
-    
-    fun translate(x: String, y: String): T {
+abstract class Transformable<T : Transformable<T>>() : SVGElement() {
+    val transforms: MutableMap<String, String> = mutableMapOf()
+
+    fun translate(
+        x: Number,
+        y: Number,
+    ): T {
         this.transforms["translate"] = "$x, $y"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
-    
-    fun translate(x: String): T {
-        this.transforms["translate"] = x
+
+    fun translate(x: Number): T {
+        this.transforms["translate"] = "$x"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
-    
-    fun scale(x: String, y: String): T {
+
+    fun scale(
+        x: Number,
+        y: Number,
+    ): T {
         this.transforms["scale"] = "$x, $y"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
-    
-    fun scale(x: String): T {
-        this.transforms["scale"] = x
+
+    fun scale(x: Number): T {
+        this.transforms["scale"] = "$x"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
-    
-    fun rotate(angle: String, x: String, y: String): T {
+
+    fun rotate(
+        angle: Number,
+        x: Number,
+        y: Number,
+    ): T {
         this.transforms["rotate"] = "$angle, $x, $y"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
-    
-    fun rotate(angle: String): T {
-        this.transforms["rotate"] = angle
-        @Suppress("UNCHECKED_CAST")
-        return this as T
-    }
-    
-    fun skewX(angle: String): T {
-        this.transforms["skewX"] = angle
-        @Suppress("UNCHECKED_CAST")
-        return this as T
-    }
-    
-    fun skewY(angle: String): T {
-        this.transforms["skewY"] = angle
-        @Suppress("UNCHECKED_CAST")
-        return this as T
-    }
-    
 
-    
+    fun rotate(angle: Number): T {
+        this.transforms["rotate"] = "$angle"
+        @Suppress("UNCHECKED_CAST")
+        return this as T
+    }
+
+    fun skewX(angle: Number): T {
+        this.transforms["skewX"] = "$angle"
+        @Suppress("UNCHECKED_CAST")
+        return this as T
+    }
+
+    fun skewY(angle: Number): T {
+        this.transforms["skewY"] = "$angle"
+        @Suppress("UNCHECKED_CAST")
+        return this as T
+    }
+
     fun render_transforms(): String {
         if (transforms.isEmpty()) return ""
-        
+
         var output = "transform=\""
         for ((key, value) in transforms) {
             output += "$key($value) "
@@ -72,9 +80,9 @@ abstract class Transformable<T: Transformable<T>>(): SVGElement(){
     }
 }
 
-abstract class SVGElement: Core {
-    val attributes: MutableMap<String,String?> = mutableMapOf()
-    val geometry_params: MutableMap<String,String> = mutableMapOf()
+abstract class SVGElement : Core {
+    val attributes: MutableMap<String, String?> = mutableMapOf()
+    val geometry_params: MutableMap<String, String> = mutableMapOf()
     val children: MutableList<SVGElement> = mutableListOf()
 
     override var id: String? by this.attributes
@@ -84,8 +92,7 @@ abstract class SVGElement: Core {
     override var cls: String? by this.attributes
     abstract val name: String
 
-
-    open protected fun render_css_attributes(): String {
+    protected open fun render_css_attributes(): String {
         var output = ""
         attributes.toSortedMap().forEach({ (key, value) ->
             val sanitised_key = key.replace("_", "-")
@@ -94,20 +101,20 @@ abstract class SVGElement: Core {
         return output.dropLast(n = 1)
     }
 
-    fun add(vararg element: SVGElement){
+    fun add(vararg element: SVGElement) {
         element.forEach { this.children.add(it) }
     }
-    
+
     fun remove(id: String) {
         this.children.removeIf { it.id == id }
     }
 
     open fun render_body(): String {
         val properties = this.render_properties()
-        
+
         return properties
     }
-    
+
     override fun toString(): String {
         val body = this.render_body()
         val children = this.render_children()
@@ -123,7 +130,7 @@ abstract class SVGElement: Core {
     protected fun render_children(): String {
         var body = ""
         for (child in children) {
-            body += "\n${child.toString()}"
+            body += "\n$child"
         }
 
         return body

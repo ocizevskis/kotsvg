@@ -1,6 +1,6 @@
 package kotsvg
 
-abstract class TransformableContainer<T: TransformableContainer<T>>: ContainerElement, Transformable<T>(){
+abstract class TransformableContainer<T : TransformableContainer<T>> : ContainerElement, Transformable<T>() {
     override var clip_path: String? by attributes
     override var color_interpolation: String? by attributes
     override var color_rendering: String? by attributes
@@ -8,18 +8,17 @@ abstract class TransformableContainer<T: TransformableContainer<T>>: ContainerEl
     override var mask: String? by attributes
     override var pointer_events: String? by attributes
 
-
     operator fun invoke(block: TransformableContainer<T>.() -> Unit = {}): T {
         this.block()
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
-
 }
-class SVG(height: Int, width: Int, block: SVG.() -> Unit = {}): TransformableContainer<SVG>() {
+
+class SVG(height: Number, width: Number, block: SVG.() -> Unit = {}) : TransformableContainer<SVG>() {
     override val name = "svg"
-    val width: Int = height
-    val height: Int = width
+    val width: Number = height
+    val height: Number = width
 
     init {
         this.geometry_params["height"] = height.toString()
@@ -38,7 +37,7 @@ class SVG(height: Int, width: Int, block: SVG.() -> Unit = {}): TransformableCon
     }
 }
 
-open class Group(vararg element: SVGElement, block: Group.() -> Unit = {}): TransformableContainer<Group>() {
+open class Group(vararg element: SVGElement, block: Group.() -> Unit = {}) : TransformableContainer<Group>() {
     override val name = "g"
 
     init {
@@ -47,7 +46,7 @@ open class Group(vararg element: SVGElement, block: Group.() -> Unit = {}): Tran
     }
 }
 
-class Link(vararg element: SVGElement, block: Link.() -> Unit = {}): TransformableContainer<Link>() {
+class Link(vararg element: SVGElement, block: Link.() -> Unit = {}) : TransformableContainer<Link>() {
     override val name = "a"
 
     init {
@@ -56,7 +55,7 @@ class Link(vararg element: SVGElement, block: Link.() -> Unit = {}): Transformab
     }
 }
 
-class ClipPath(vararg element: SVGElement, block: ClipPath.() -> Unit = {}): TransformableContainer<ClipPath>() {
+class ClipPath(vararg element: SVGElement, block: ClipPath.() -> Unit = {}) : TransformableContainer<ClipPath>() {
     override val name = "clipPath"
 
     init {
@@ -65,7 +64,7 @@ class ClipPath(vararg element: SVGElement, block: ClipPath.() -> Unit = {}): Tra
     }
 }
 
-class Defs(vararg element: SVGElement, block: Defs.() -> Unit = {}): TransformableContainer<Defs>() {
+class Defs(vararg element: SVGElement, block: Defs.() -> Unit = {}) : TransformableContainer<Defs>() {
     override val name = "defs"
 
     init {
@@ -74,7 +73,7 @@ class Defs(vararg element: SVGElement, block: Defs.() -> Unit = {}): Transformab
     }
 }
 
-class Mask(vararg element: SVGElement, block: Mask.() -> Unit = {}): TransformableContainer<Mask>() {
+class Mask(vararg element: SVGElement, block: Mask.() -> Unit = {}) : TransformableContainer<Mask>() {
     override val name = "mask"
 
     init {
@@ -83,7 +82,7 @@ class Mask(vararg element: SVGElement, block: Mask.() -> Unit = {}): Transformab
     }
 }
 
-class Marker(vararg element: SVGElement, block: Marker.() -> Unit = {}): TransformableContainer<Marker>() {
+class Marker(vararg element: SVGElement, block: Marker.() -> Unit = {}) : TransformableContainer<Marker>() {
     override val name = "marker"
 
     init {
@@ -92,7 +91,7 @@ class Marker(vararg element: SVGElement, block: Marker.() -> Unit = {}): Transfo
     }
 }
 
-class Pattern(vararg element: SVGElement, block: Pattern.() -> Unit = {}): TransformableContainer<Pattern>() {
+class Pattern(vararg element: SVGElement, block: Pattern.() -> Unit = {}) : TransformableContainer<Pattern>() {
     override val name = "pattern"
 
     init {
@@ -101,7 +100,7 @@ class Pattern(vararg element: SVGElement, block: Pattern.() -> Unit = {}): Trans
     }
 }
 
-class Symbol(vararg element: SVGElement, block: Symbol.() -> Unit = {}): TransformableContainer<Symbol>() {
+class Symbol(vararg element: SVGElement, block: Symbol.() -> Unit = {}) : TransformableContainer<Symbol>() {
     override val name = "symbol"
 
     init {
@@ -110,7 +109,7 @@ class Symbol(vararg element: SVGElement, block: Symbol.() -> Unit = {}): Transfo
     }
 }
 
-class Switch(vararg element: SVGElement, block: Switch.() -> Unit = {}): TransformableContainer<Switch>() {
+class Switch(vararg element: SVGElement, block: Switch.() -> Unit = {}) : TransformableContainer<Switch>() {
     override val name = "switch"
 
     init {
@@ -118,4 +117,3 @@ class Switch(vararg element: SVGElement, block: Switch.() -> Unit = {}): Transfo
         this.block()
     }
 }
-

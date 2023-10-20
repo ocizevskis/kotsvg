@@ -1,95 +1,100 @@
 
 // will eventually replace String with CSSVal in all methods and constructors
-abstract class CSSVal {
-    private val value: String
+
+abstract class CSSValue(value: Number) : Number() {
+    protected val value: Number = value
     abstract val units: String
 
-    constructor(value: String) {
-        this.value = value
-        }
+    override fun toByte(): Byte {
+        return this.value.toByte()
+    }
+
+    override fun toChar(): Char {
+        return this.value.toChar()
+    }
+
+    override fun toDouble(): Double {
+        return this.value.toDouble()
+    }
+
+    override fun toFloat(): Float {
+        return this.value.toFloat()
+    }
+
+    override fun toInt(): Int {
+        return this.value.toInt()
+    }
+
+    override fun toLong(): Long {
+        return this.value.toLong()
+    }
+
+    override fun toShort(): Short {
+        return this.value.toShort()
+    }
 
     override fun toString(): String {
         return this.value.toString() + this.units
     }
 }
 
-class Px(value: String): CSSVal(value) {
+class Px(value: Number) : CSSValue(value) {
     override val units = "px"
 }
 
-class Percent(value: String): CSSVal(value) {
+class Percent(value: Number) : CSSValue(value) {
     override val units = "%"
 }
 
-class Em(value: String): CSSVal(value) {
+class Em(value: Number) : CSSValue(value) {
     override val units = "em"
 }
 
-class Rem(value: String): CSSVal(value) {
+class Rem(value: Number) : CSSValue(value) {
     override val units = "rem"
 }
 
-class Vw(value: String): CSSVal(value) {
+class Vw(value: Number) : CSSValue(value) {
     override val units = "vw"
 }
 
-class Vh(value: String): CSSVal(value) {
+class Vh(value: Number) : CSSValue(value) {
     override val units = "vh"
 }
 
-class Vmin(value: String): CSSVal(value) {
+class Vmin(value: Number) : CSSValue(value) {
     override val units = "vmin"
 }
 
-class Vmax(value: String): CSSVal(value) {
+class Vmax(value: Number) : CSSValue(value) {
     override val units = "vmax"
 }
 
-class Ex(value: String): CSSVal(value) {
+class Ex(value: Number) : CSSValue(value) {
     override val units = "ex"
 }
 
-class Ch(value: String): CSSVal(value) {
+class Ch(value: Number) : CSSValue(value) {
     override val units = "ch"
 }
 
-class Cm(value: String): CSSVal(value) {
+class Cm(value: Number) : CSSValue(value) {
     override val units = "cm"
 }
 
-class Mm(value: String): CSSVal(value) {
+class Mm(value: Number) : CSSValue(value) {
     override val units = "mm"
 }
 
-class In(value: String): CSSVal(value) {
+class In(value: Number) : CSSValue(value) {
     override val units = "in"
 }
 
-class Pt(value: String): CSSVal(value) {
+class Pt(value: Number) : CSSValue(value) {
     override val units = "pt"
 }
 
-class Pc(value: String): CSSVal(value) {
+class Pc(value: Number) : CSSValue(value) {
+    // parsec, obviously
     override val units = "pc"
 }
-
-class Deg(value: String): CSSVal(value) {
-    override val units = "deg"
-}
-
-class Grad(value: String): CSSVal(value) {
-    override val units = "grad"
-}
-
-class Rad(value: String): CSSVal(value) {
-    override val units = "rad"
-}
-
-class Turn(value: String): CSSVal(value) {
-    override val units = "turn"
-}
-
-class Ms(value: String): CSSVal(value) {
-    override val units = "ms"
-}
-
