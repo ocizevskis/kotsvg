@@ -32,7 +32,7 @@ line {
 
 any invalid attributes will be labeled as such by the IDE.
 
-Currently, all geometry properties use Number as type; is a CSS value like 10Em is needed, the Em type can be imported from kotsvg.types. Numeric attributes Still take String, but this will be changed.
+Currently, all geometry properties use Number as type; if a CSS value like 10Em is needed, the Em type can be imported from kotsvg.types. Numeric attributes still take String, but this will be changed.
 
 ## Examples
 
