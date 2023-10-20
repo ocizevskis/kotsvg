@@ -4,59 +4,59 @@ abstract class Transformable<T : Transformable<T>>() : SVGElement() {
     val transforms: MutableMap<String, String> = mutableMapOf()
 
     fun translate(
-        x: String,
-        y: String,
+        x: Number,
+        y: Number,
     ): T {
         this.transforms["translate"] = "$x, $y"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
 
-    fun translate(x: String): T {
-        this.transforms["translate"] = x
+    fun translate(x: Number): T {
+        this.transforms["translate"] = "$x"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
 
     fun scale(
-        x: String,
-        y: String,
+        x: Number,
+        y: Number,
     ): T {
         this.transforms["scale"] = "$x, $y"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
 
-    fun scale(x: String): T {
-        this.transforms["scale"] = x
+    fun scale(x: Number): T {
+        this.transforms["scale"] = "$x"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
 
     fun rotate(
-        angle: String,
-        x: String,
-        y: String,
+        angle: Number,
+        x: Number,
+        y: Number,
     ): T {
         this.transforms["rotate"] = "$angle, $x, $y"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
 
-    fun rotate(angle: String): T {
-        this.transforms["rotate"] = angle
+    fun rotate(angle: Number): T {
+        this.transforms["rotate"] = "$angle"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
 
-    fun skewX(angle: String): T {
-        this.transforms["skewX"] = angle
+    fun skewX(angle: Number): T {
+        this.transforms["skewX"] = "$angle"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }
 
-    fun skewY(angle: String): T {
-        this.transforms["skewY"] = angle
+    fun skewY(angle: Number): T {
+        this.transforms["skewY"] = "$angle"
         @Suppress("UNCHECKED_CAST")
         return this as T
     }

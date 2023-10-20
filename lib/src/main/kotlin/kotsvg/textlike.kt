@@ -68,21 +68,11 @@ class Text : TransformableTextLike<Text> {
     constructor(x: Number, y: Number, text: String, block: Text.() -> Unit = {}) : super(x.toString(), y.toString(), text) {
         block()
     }
-
-    // Existing constructor
-    constructor(x: String, y: String, text: String, block: Text.() -> Unit = {}) : super(x, y, text) {
-        block()
-    }
 }
 
 class Tspan : TransformableTextLike<Tspan> {
     override val name = "tspan"
     constructor(x: Number, y: Number, text: String, block: Tspan.() -> Unit = {}) : super(x.toString(), y.toString(), text) {
-        block()
-    }
-
-    // Existing constructor
-    constructor(x: String, y: String, text: String, block: Tspan.() -> Unit = {}) : super(x, y, text) {
         block()
     }
 }

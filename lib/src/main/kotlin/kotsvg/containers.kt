@@ -15,10 +15,10 @@ abstract class TransformableContainer<T : TransformableContainer<T>> : Container
     }
 }
 
-class SVG(height: Int, width: Int, block: SVG.() -> Unit = {}) : TransformableContainer<SVG>() {
+class SVG(height: Number, width: Number, block: SVG.() -> Unit = {}) : TransformableContainer<SVG>() {
     override val name = "svg"
-    val width: Int = height
-    val height: Int = width
+    val width: Number = height
+    val height: Number = width
 
     init {
         this.geometry_params["height"] = height.toString()

@@ -95,5 +95,6 @@ class Pt(value: Number) : CSSValue(value) {
 }
 
 class Pc(value: Number) : CSSValue(value) {
+    // parsec, obviously
     override val units = "pc"
 }
