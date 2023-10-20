@@ -30,7 +30,8 @@ line {
 }
 ```
 
-any invalid attributes will be labeled as such by the IDE.
+any invalid attributes will be labeled as such by the IDE. Note: as svg attributes can be both camelCase and lisp-case,
+the library uses snake_case for all lisp-casse attrs.
 
 Currently, all geometry properties use Number as type; if a CSS value like 10Em is needed, the Em type can be imported from kotsvg.types. Numeric attributes still take String, but this will be changed.
 
